@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все юзеры</title>
+</head>
+<body>
+
+
+<div>
+    <table th:border="1" th:align="center">
+        <tr>
+            <th>ID</th>
+            <th>ИМЯ</th>
+            <th>ФАМИЛИЯ</th>
+            <th>ВОЗРАСТ</th>
+            <th th:colspan="3" th:width="200">buttons</th>
+        </tr>
+
+        <tr th:each="user : ${users}">
+            <td th:align="center" th:text="${user.getId()}">id</td>
+            <td th:align="center" th:text="${user.getName()}">name</td>
+            <td th:align="center" th:text="${user.getSurName()}">surname</td>
+            <td th:align="center" th:text="${user.getAge()}">age</td>
+            <td>
+                <form th:align="center" th:action="@{/users/{id}(id=${user.getId()})}">
+                    <button type="submit">info</button>
+                </form>
+            </td>
+            <td>
+                <form th:align="center" th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+                    <button type="submit">delete</button>
+                </form>
+            </td>
+            <td>
+                <form th:align="center" th:action="@{/users/{id}/edit(id=${user.getId()})}">
+                    <button type="submit">update</button>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<br/>
+<hr/>
+
+<form action="/users/new" th:align="center">
+    <button type="submit">Создать юзера</button>
+</form>
+</body>
+</html>
