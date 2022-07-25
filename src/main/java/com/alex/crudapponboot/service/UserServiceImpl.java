@@ -1,7 +1,7 @@
 package com.alex.crudapponboot.service;
 
-import com.alex.crudapponboot.dao.UserDao;
 import com.alex.crudapponboot.models.User;
+import com.alex.crudapponboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,35 +12,38 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private UserDao userDao;
+    private final UserRepository userRepository;
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
     @Override
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return userRepository.findAll();
     }
 
     @Transactional
     @Override
     public User getUserById(long id) {
-        return userDao.getUserById(id);
+        return userRepository.findById(id).get();
     }
 
     @Transactional
     @Override
     public void removeUserById(long id) {
-        userDao.removeUserById(id);
+        userRepository.deleteById(id);
     }
     @Transactional
     @Override
     public void updateUserById(long id, User user) {
-        userDao.updateUserById(id, user);
+        User userUpd = userRepository.findById(id).get();
+        userUpd = user;
+        userRepository.save(userUpd);
+
     }
     @Transactional
     @Override
     public void saveUser(User user) {
-        userDao.saveUser(user);
+        userRepository.save(user);
     }
 }
