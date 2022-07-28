@@ -7,7 +7,7 @@
             background-color: #d24dff
         }
 
-        tr{
+        tr {
             background-color: greenyellow;
         }
     </style>
@@ -15,7 +15,6 @@
     <title>Юзер</title>
 </head>
 <body>
-
 
 
 <div>
@@ -48,16 +47,22 @@
     <table th:align="center">
         <tr>
             <th>
-            <form th:align="center" th:action="@{/users/{id}/edit(id=${user.getId()})}">
-                <button type="submit">update</button>
-            </form>
+                <form th:align="center" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                    <button type="submit">update</button>
+                </form>
             </th>
 
             <th>
-            <form th:align="center" th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
-                <input type="submit" value="Delete"/>
-            </form>
+                <form th:align="center" th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
             </th>
+            <th>
+                <form th:align="center" th:action="@{/admin}">
+                    <button type="submit">go back</button>
+                </form>
+            </th>
+
             <th>
                 <form th:align="center" th:action="@{/logout}">
                     <button type="submit">Oh fuck here we go again</button>
@@ -71,18 +76,22 @@
     <table>
         <tr>
             <th>
-<img src="https://c.tenor.com/8iMyvddJvmIAAAAd/gachimuchi-steve-rambo.gif"  th:align="left" th:width="300" th:height="400">
+                <img src="https://c.tenor.com/8iMyvddJvmIAAAAd/gachimuchi-steve-rambo.gif" th:align="left"
+                     th:width="300" th:height="400">
             </th>
             <th>
-<iframe th:align="center" src="https://www.youtube.com/embed/QXe0Z6nNg7o?" th:autoplay="1" th:width="300" th:height="400" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe th:align="center" src="https://www.youtube.com/embed/QXe0Z6nNg7o?" th:autoplay="1"
+                        th:width="300" th:height="400" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
             </th>
             <th>
-<img src="https://c.tenor.com/f8xOHJkF3RsAAAAC/mbstm-shrek-mbtsm.gif"   th:width="300" th:height="400" th:align="right">
+                <img src="https://c.tenor.com/f8xOHJkF3RsAAAAC/mbstm-shrek-mbtsm.gif" th:width="300" th:height="400"
+                     th:align="right">
             </th>
         </tr>
     </table>
 </div>
-
 
 
 </body>

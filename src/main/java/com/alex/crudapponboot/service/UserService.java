@@ -1,7 +1,9 @@
 package com.alex.crudapponboot.service;
 
 
+import com.alex.crudapponboot.models.Role;
 import com.alex.crudapponboot.models.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,9 +14,11 @@ public interface UserService {
 
     void removeUserById(long id);
 
-    void updateUserById(long id, User user);
-
     void saveUser(User user);
 
+    User getUserByUsername(String username);
 
+    public List<Role> getAllRoles();
+
+    public List<Role> findRolesByName (String RoleIds);
 }

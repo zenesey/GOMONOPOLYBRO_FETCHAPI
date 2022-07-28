@@ -23,20 +23,21 @@
             <td th:align="center" th:text="${user.getSurName()}">surname</td>
             <td th:align="center" th:text="${user.getAge()}">age</td>
             <td>
-                <form th:align="center" th:action="@{/users/{id}(id=${user.getId()})}">
+                <form th:align="center" th:action="@{/admin/{id}(id=${user.getId()})}">
                     <button type="submit">info</button>
                 </form>
             </td>
             <td>
-                <form th:align="center" th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+                <form th:align="center" th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
                     <button type="submit">delete</button>
                 </form>
             </td>
             <td>
-                <form th:align="center" th:action="@{/users/{id}/edit(id=${user.getId()})}">
+                <form th:align="center" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
                     <button type="submit">update</button>
                 </form>
             </td>
+
 
         </tr>
     </table>
@@ -44,9 +45,19 @@
 
 <br/>
 <hr/>
-
-<form action="/users/new" th:align="center">
-    <button type="submit">Создать юзера</button>
-</form>
+<table th:align="center">
+    <tr>
+        <th>
+            <form action="/admin/new" th:align="center">
+                <button type="submit" style="color: #13166a; background-color: #d44987; border-color: #d45212">Создать юзера</button>
+            </form>
+        </th>
+        <th>
+            <form th:align="center" th:action="@{/logout}">
+                <button type="submit">Oh fuck here we go again</button>
+            </form>
+        </th>
+    </tr>
+</table>
 </body>
 </html>
