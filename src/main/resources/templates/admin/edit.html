@@ -34,6 +34,7 @@
                 </td>
                 <td>
                     <input type="password" th:field="*{password}" id="password"/>
+
                 </td>
                 <td>
                     <input type="text" th:field="*{name}" id="name"/>
@@ -50,16 +51,22 @@
                            id="role" th:value="${role.id}" th:field="*{roles}"/>
                     <br/>
                 </td>
-
+            </tr>
             <tr>
                 <th>
                     <input type="submit" value="Update">
                 </th>
+            </tr>
+            <tr>
+                <td>
+                    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">age Error</div>
+                </td>
+
+            </tr>
         </table>
         <hr/>
     </form>
 </div>
-
 
 
 <table>

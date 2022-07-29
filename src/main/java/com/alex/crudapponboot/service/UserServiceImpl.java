@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<Role> findRolesByName (String RoleIds) {
-        List<Role> roles = new ArrayList<>();
+    public Set<Role> findRolesByName (String RoleIds) {
+        Set<Role> roles = new HashSet<>();
         for (Role role : getAllRoles()){
             if (RoleIds.contains(String.valueOf(role.getId()))) {
                 roles.add(role);
@@ -62,11 +62,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Transactional
     @Override
+    public void updateUserById(long id, User user) {
+            if (user.getPassword() != getUserById(id).getPassword()) {
+                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+            }
+
+            userRepository.save(user);
+
+
+    }
+
+    @Transactional
+    @Override
     public void saveUser(User user) {
-        if (user.getPassword() == null) {
-            user.setPassword(new BCryptPasswordEncoder().encode(getUserById(user.getId()).getPassword()));
-        }
-        user.setPassword(getUserById(user.getId()).getPassword());
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
     }
 

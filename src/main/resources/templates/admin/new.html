@@ -34,6 +34,9 @@
                 </td>
                 <td>
                     <input type="password" th:field="*{password}" id="password"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+
+
                 </td>
                 <td>
                     <input type="text" th:field="*{name}" id="name"/>
@@ -41,6 +44,7 @@
                 <td>
                     <input type="text" th:field="*{surName}" id="surname"/>
                 </td>
+
                 <td>
                     <input type="text" th:field="*{age}" id="age"/>
                 </td>
@@ -49,10 +53,10 @@
                     <input name="rolesId" type="checkbox" th:text="${role.name}"
                            id="role" th:value="${role.id}" th:field="*{roles}"/>
                 </td>
-                <td>
-                    <input type="submit" value="Update">
-                </td>
 
+                <td>
+                    <input type="submit" value="Save">
+                </td>
 
         </table>
     </form>

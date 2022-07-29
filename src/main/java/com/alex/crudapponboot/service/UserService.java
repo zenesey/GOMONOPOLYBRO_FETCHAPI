@@ -6,6 +6,7 @@ import com.alex.crudapponboot.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
     List<User> getAllUsers();
@@ -18,7 +19,9 @@ public interface UserService {
 
     User getUserByUsername(String username);
 
+    public void updateUserById(long id, User user);
+
     public List<Role> getAllRoles();
 
-    public List<Role> findRolesByName (String RoleIds);
+    public Set<Role> findRolesByName (String RoleIds);
 }

@@ -7,8 +7,11 @@ import com.alex.crudapponboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -60,9 +63,10 @@ public class AdminController {
     }
     // СОХРАНИТЬ ИЗМЕНЕННОГО ЮЗЕРА
     @PatchMapping("/{id}")
-    public String update(@RequestParam("roles") String role, @ModelAttribute("user") User user, @PathVariable("id") long id) {
+    public String update(@RequestParam("roles") String role, @ModelAttribute("user") User user) {
+
         user.setRoles(userService.findRolesByName(role));
-        userService.saveUser(user);
+        userService.updateUserById(user.getId(), user);
         return "redirect:/admin";
     }
     // УДАЛИТЬ ЮЗЕРА
