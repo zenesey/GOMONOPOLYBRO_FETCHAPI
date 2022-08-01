@@ -23,5 +23,5 @@ public interface UserService {
 
     public List<Role> getAllRoles();
 
-    public Set<Role> findRolesByName (String RoleIds);
+    public Set<Role> findRolesById (String RoleIds);
 }

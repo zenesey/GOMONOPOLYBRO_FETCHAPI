@@ -1,80 +1,86 @@
 package com.alex.crudapponboot.controllers;
 
 
-import com.alex.crudapponboot.models.Role;
 import com.alex.crudapponboot.models.User;
 import com.alex.crudapponboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
+
     @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
     }
 
-    // ПОЛУЧИТЬ ВСЕХ ЮЗЕРОВ
-    @GetMapping()
-    public String getAllUsers(Model model) {
-        model.addAttribute("users",userService.getAllUsers());
-        return "admin/users";
-    }
 
-
-    // ПОЛУЧИТЬ ЮЗЕРА ПО ID
-    @GetMapping("/{id}")
-    public String getUserById(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "admin/show";
-    }
-    // СОЗДАТЬ НОВОГО ЮЗЕРА
-    @GetMapping("/new")
-    public String newUser(Model model) {
-        model.addAttribute("user",new User());
+    // 1 приц
+    @GetMapping
+    public String getAllUsers(@AuthenticationPrincipal User authUser, @ModelAttribute("user") User user, Model model) {
+        model.addAttribute("auth",authUser);
         model.addAttribute("allRoles", userService.getAllRoles());
-
-        return "admin/new";
+        model.addAttribute("allUsers", userService.getAllUsers());
+        return "admin/fuckyourmom";
     }
-    // СОХРАНИТЬ НОВОГО ЮЗЕРА
+
+
     @PostMapping
-    public String create (@RequestParam("roles") String role ,@ModelAttribute("user") User user) {
-        user.setRoles(userService.findRolesByName(role));
+    public String saveUser(@RequestParam ("roles") String role, @ModelAttribute("user") User user) {
+        if(role!=null) {
+            user.setRoles(userService.findRolesById(role));
+        }
+        user.setRoles(userService.findRolesById(role));
         userService.saveUser(user);
         return "redirect:/admin";
     }
-    // ИЗМЕНИТЬ ЮЗЕРА
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") long id) {
-        model.addAttribute("allRoles", userService.getAllRoles());
-        model.addAttribute("user", userService.getUserById(id));
-        return "admin/edit";
-    }
-    // СОХРАНИТЬ ИЗМЕНЕННОГО ЮЗЕРА
-    @PatchMapping("/{id}")
-    public String update(@RequestParam("roles") String role, @ModelAttribute("user") User user) {
 
-        user.setRoles(userService.findRolesByName(role));
+
+
+    @PatchMapping
+    public String update(@RequestParam(value = "roles",required = false) String role, @ModelAttribute("user") User user) {
+        System.out.println(role);
+
+        if(role!=null) {
+            user.setRoles(userService.findRolesById(role));
+        }
         userService.updateUserById(user.getId(), user);
         return "redirect:/admin";
     }
-    // УДАЛИТЬ ЮЗЕРА
-    @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable("id") long id) {
+
+    @DeleteMapping
+    public String deleteUser(@RequestParam("id") long id) {
         userService.removeUserById(id);
 
         return "redirect:/admin";
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

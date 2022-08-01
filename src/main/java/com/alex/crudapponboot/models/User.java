@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -41,6 +42,16 @@ public class User implements UserDetails {
     @Fetch(FetchMode.JOIN)
     private Set<Role> roles;
 
+
+
+             // GACHI METHOD
+//_________________________________________________________
+    public String getRolesString() {
+            StringBuilder suqa = new StringBuilder();
+            roles.stream().forEach(x -> suqa.append(x.getName().substring(5) + " "));
+            return suqa.toString();
+    }
+//_________________________________________________________
 
 
     @Override

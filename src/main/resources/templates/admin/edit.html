@@ -19,7 +19,7 @@
                     <label for="name">Введите имя:</label>
                 </th>
                 <th>
-                    <label for="surname">Введите фамилию:</label>
+                    <label for="surname">Введите фам:</label>
                 </th>
                 <th>
                     <label for="age">Введите возраст:</label>
@@ -54,14 +54,8 @@
             </tr>
             <tr>
                 <th>
-                    <input type="submit" value="Update">
+                    <input type="submit" value="Updatable">
                 </th>
-            </tr>
-            <tr>
-                <td>
-                    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">age Error</div>
-                </td>
-
             </tr>
         </table>
         <hr/>

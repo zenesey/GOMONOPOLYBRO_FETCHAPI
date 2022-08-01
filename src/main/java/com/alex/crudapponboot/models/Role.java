@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -34,6 +33,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return "Roles:" + name;
+        return  name;
     }
 }
