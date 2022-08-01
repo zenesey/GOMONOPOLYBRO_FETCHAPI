@@ -21,7 +21,7 @@ public class UsersController {
 
     @GetMapping
     public String getUserById(@AuthenticationPrincipal User user, Model model) {
-        model.addAttribute("user", user);
+        model.addAttribute("auth", user);
         return "users/show";
     }
 //
