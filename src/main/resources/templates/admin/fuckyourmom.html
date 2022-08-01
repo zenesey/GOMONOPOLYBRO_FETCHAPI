@@ -105,8 +105,7 @@
                                     th:href="${'#deleteForModel' + anyUsers.getId()}"> Delete
                             </button>
                         </td>
-                    </tr>
-                    <tr>
+
                         <td>
                             <div th:each="userForDelete: ${allUsers}">
                                 <!--                                            todo          МОДЕЛЬ Delete      -->
@@ -207,7 +206,7 @@
 
                             <!--                                                                                    _________________________                                                           -->
                         </td>
-                        <td hidden>
+                        <td>
                             <div th:each="userForUpdate: ${allUsers}">
                                 <!--                                                    todo  МОДЕЛЬ UPDATE      -->
                                 <div class="modal fade" th:id="${'updateForModel' + userForUpdate.getId()}"
