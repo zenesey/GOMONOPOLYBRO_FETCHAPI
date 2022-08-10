@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -26,8 +28,10 @@ public class AdminController {
         model.addAttribute("auth",authUser);
         model.addAttribute("allRoles", userService.getAllRoles());
         model.addAttribute("allUsers", userService.getAllUsers());
-        return "admin/firsview";
+        return "rest/Rest";
     }
+
+
 
 
     @PostMapping

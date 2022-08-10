@@ -16,6 +16,8 @@
             return false;
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
     <title>Admin panel</title>
 
 </head>
@@ -85,7 +87,7 @@
                     </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="tbody_allUsers">
                     <tr class="border-top" th:each="anyUsers: ${allUsers}">
                         <td th:text="${anyUsers.getId()}"></td>
                         <td th:text="${anyUsers.getName()}"></td>

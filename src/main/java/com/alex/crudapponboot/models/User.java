@@ -3,10 +3,13 @@ package com.alex.crudapponboot.models;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 @Data
 @Entity
 @Table(name = "user")
+@Validated
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,12 +32,14 @@ public class User implements UserDetails {
     @Column(name = "age")
     private int age;
 
-    @Column(name = "username",unique = true)
+    @Column(name = "username")
     private String username;
 
-
+    @NotEmpty
     @Column(name = "password")
     private String password;
+
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
