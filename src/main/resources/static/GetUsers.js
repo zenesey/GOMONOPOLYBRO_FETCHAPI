@@ -46,7 +46,66 @@ async function getUsers() {
         })
     }
 }
+
+
 //TODO КОНЕЦ ВСЕХ ЮЗЕРОВ
+
+
+//TODO PRINCIPAL;
+async function auth() {
+    let authObj;
+
+    fetch("api/admin/auth").then(res => {
+        res.json().then(
+            user => {
+                authObj = {
+                    id: user.id,
+                    name: user.name,
+                    surname: user.surName,
+                    age: user.age,
+                    username: user.username,
+                    userRoles: ""
+                }
+                user.roles.forEach((role) => {
+                    authObj.userRoles += role.name.substring(5) + " ";
+                })
+                console.log(authObj);
+                infoBar(authObj);
+                navBar(authObj.userRoles, authObj.username)
+            }
+        )
+    })
+}
+
+function infoBar(obj) {
+    const placement = document.getElementById("infoTable")
+
+    placement.innerHTML = `
+    <td>${obj.id}</td>
+    <td>${obj.name}</td>
+    <td>${obj.surname}</td>
+    <td>${obj.age}</td>
+    <td>${obj.username}</td>
+    <td>${obj.userRoles}</td>
+    `
+}
+
+function navBar(roles, email) {
+    console.log(roles, email)
+    const placement = document.getElementById("navBar");
+    const element = document.createElement("div");
+    element.innerHTML = `
+            <b class="navbar-brand"> ${email} </b>
+            <a class="navbar-brand" href="#"> with roles:</a>
+            <a class="navbar-brand" href="#" > ${roles}</a>
+                        `
+    console.log(roles, email)
+    placement.append(element)
+
+}
+
+//TODO PRINCIPAL ends
+
 
 //TODO МОДАЛКА DELETE
 const formDelete = document.getElementById('formDelete')
@@ -122,20 +181,20 @@ formEdit.addEventListener('submit', e => {
 
     console.log(formData.getAll("roles"))
     i = 1;
-        if (1) {
-            fetch("api/admin", {
-                method: "PUT",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(object)
-            })
-                .then(() => getUsers());
-            $("#ModalEdit").modal("hide");
-            formEdit.reset();
-        } else {
-            alert("ДЕБИЛ")
-        }
+    if (1) {
+        fetch("api/admin", {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(object)
+        })
+            .then(() => getUsers());
+        $("#ModalEdit").modal("hide");
+        formEdit.reset();
+    } else {
+        alert("ДЕБИЛ")
+    }
 })
 //TODO МОДАЛКА EDIT ENDS
 
@@ -198,17 +257,17 @@ newUser.addEventListener('submit', e => {
 
 
     if (checkUniqEmail(formData, allUsername)) {
-    fetch("api/admin", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify(obj)
-    })
-        .then(() => getUsers())
-        .then(() => newUser.reset());
+        fetch("api/admin", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(() => getUsers())
+            .then(() => newUser.reset());
 
-    return show("Page3", "Page4");
+        return show("Page3", "Page4");
     } else {
         alert("ДЕБИЛ")
     }
@@ -218,6 +277,8 @@ newUser.addEventListener('submit', e => {
 
 
 //TODO ANY FUNCTION
+
+
 function afterRemoveCheckEmail() {
     allUsername.forEach((value, key) => {
         if (value === userNameForDelete) {
@@ -231,15 +292,16 @@ function checkUniqEmail(formData, allUsername) {
     let bool = true;
     let username;
     formData.forEach((value, key) => {
-       if (key === "username") {
-               username = value;
-       }
+        if (key === "username") {
+            username = value;
+        }
     });
     allUsername.forEach(e => {
-       if (e === username) {
-           bool = false
-       }
+        if (e === username) {
+            bool = false
+        }
     });
 
     return bool;
+
 }

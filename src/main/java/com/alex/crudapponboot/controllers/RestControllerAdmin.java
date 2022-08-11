@@ -5,11 +5,10 @@ import com.alex.crudapponboot.models.User;
 import com.alex.crudapponboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,8 +24,13 @@ public class RestControllerAdmin {
     }
 
     @GetMapping()
-    public List<User> allUsers(@ModelAttribute("user") User user) {
+    public List<User> allUsers() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/auth")
+    public User principal(@AuthenticationPrincipal User user) {
+        return user;
     }
 
 
@@ -46,11 +50,7 @@ public class RestControllerAdmin {
 
 
     @PostMapping
-    public ResponseEntity<String> saveUser(@RequestBody @Valid User user, BindingResult bindingResult) {
-    if (bindingResult.hasErrors()) {
-        System.out.println("sosat");
-    }
-
+    public ResponseEntity<String> saveUser(@RequestBody User user) {
         userService.saveUser(user);
         return ResponseEntity.ok("valid");
     }

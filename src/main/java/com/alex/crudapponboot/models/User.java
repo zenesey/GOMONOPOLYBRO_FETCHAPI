@@ -52,13 +52,6 @@ public class User implements UserDetails {
 
              // GACHI METHOD
 //_________________________________________________________
-    public String getRolesString() {
-            StringBuilder suqa = new StringBuilder();
-            roles.stream().forEach(x -> suqa.append(x.getName().substring(5) + " "));
-            return suqa.toString();
-    }
-//_________________________________________________________
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
