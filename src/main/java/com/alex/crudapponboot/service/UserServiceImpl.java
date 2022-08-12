@@ -1,6 +1,6 @@
 package com.alex.crudapponboot.service;
 
-import com.alex.crudapponboot.models.Role;
+import com.alex.crudapponboot.dto.UserDto;
 import com.alex.crudapponboot.models.User;
 import com.alex.crudapponboot.repositories.RoleRepository;
 import com.alex.crudapponboot.repositories.UserRepository;
@@ -18,13 +18,9 @@ import java.util.*;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     @Autowired
-    public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository) {
-
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -38,39 +34,29 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
 
-    @Override
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll();
-    }
-
-    @Override
-    public Set<Role> findRolesById (String RoleIds) {
-        Set<Role> roles = new HashSet<>();
-        for (Role role : getAllRoles()){
-            if (RoleIds.contains(String.valueOf(role.getId()))) {
-                roles.add(role);
-            }
-        }
-        return roles;
-    }
-
     @Transactional
     @Override
     public void removeUserById(long id) {
         userRepository.deleteById(id);
     }
 
+
+
+
     @Transactional
     @Override
     public void updateUserById(long id, User user) {
-            if (user.getPassword() != getUserById(id).getPassword()) {
-                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            }
+        if (user.getPassword() != getUserWithRolesById(id).getPassword()) {
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        }
 
-            userRepository.save(user);
-
-
+        userRepository.save(user);
     }
+
+
+
+
+
 
     @Transactional
     @Override
@@ -79,16 +65,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.save(user);
     }
 
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
 
-    @Transactional
-    @Override
-    public User getUserById(long id) {
-        return userRepository.findById(id).get();
-    }
+
+
+
+
 
     @Override
     public User getUserByUsername(String username) {
@@ -96,4 +77,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
 
+    @Override
+    public List<UserDto> getAllUsersWithoutRoles() {
+        return userRepository.getAllUsersWithoutRoles();
+    }
+
+    @Override
+    public List<User> getAllUsersWithRoles() {
+        return userRepository.getAllUsersWithRoles();
+    }
+
+    @Override
+    public UserDto getUserWithoutRolesById(Long id) {
+        return userRepository.getUserWithoutRolesById(id);
+    }
+
+    @Override
+    public User getUserWithRolesById(Long id) {
+        return userRepository.getUserWithRolesById(id);
+    }
 }

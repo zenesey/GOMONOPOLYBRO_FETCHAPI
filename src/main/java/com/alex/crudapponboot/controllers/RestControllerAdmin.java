@@ -1,6 +1,7 @@
 package com.alex.crudapponboot.controllers;
 
 
+import com.alex.crudapponboot.dto.UserDto;
 import com.alex.crudapponboot.models.User;
 import com.alex.crudapponboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,8 @@ public class RestControllerAdmin {
 
     @GetMapping()
     public List<User> allUsers() {
-        return userService.getAllUsers();
+        return userService.getAllUsersWithRoles();
+
     }
 
     @GetMapping("/auth")
@@ -53,6 +55,11 @@ public class RestControllerAdmin {
     public ResponseEntity<String> saveUser(@RequestBody User user) {
         userService.saveUser(user);
         return ResponseEntity.ok("valid");
+    }
+
+    @GetMapping("/test")
+    public List<UserDto> test() {
+        return userService.getAllUsersWithoutRoles();
     }
 
 }

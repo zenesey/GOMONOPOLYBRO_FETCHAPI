@@ -1,6 +1,7 @@
 package com.alex.crudapponboot.service;
 
 
+import com.alex.crudapponboot.dto.UserDto;
 import com.alex.crudapponboot.models.Role;
 import com.alex.crudapponboot.models.User;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,14 @@ import java.util.List;
 import java.util.Set;
 
 public interface UserService {
-    List<User> getAllUsers();
+    List<UserDto> getAllUsersWithoutRoles();
+    List<User> getAllUsersWithRoles();
 
-    User getUserById(long id);
+
+    UserDto getUserWithoutRolesById(Long id);
+
+    User getUserWithRolesById(Long id);
+
 
     void removeUserById(long id);
 
@@ -19,9 +25,14 @@ public interface UserService {
 
     User getUserByUsername(String username);
 
-    public void updateUserById(long id, User user);
+    void updateUserById(long id, User user);
 
-    public List<Role> getAllRoles();
 
-    public Set<Role> findRolesById (String RoleIds);
+
+
+
+
+
+
+//    public Set<Role> findRolesById (String RoleIds)
 }
