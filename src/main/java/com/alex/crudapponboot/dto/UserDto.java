@@ -1,9 +1,7 @@
 package com.alex.crudapponboot.dto;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+// ХАЙ БУДЭ
 
 @Data
 @AllArgsConstructor

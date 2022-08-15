@@ -1,6 +1,5 @@
 package com.alex.crudapponboot.controllers;
 
-
 import com.alex.crudapponboot.models.User;
 import com.alex.crudapponboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +51,4 @@ public class RestControllerAdmin {
         userService.saveUser(user);
         return ResponseEntity.ok("Save successful");
     }
-
-    @GetMapping("/test")
-    public ResponseEntity<?> test() {
-        return ResponseEntity.ok( userService.getAllUsersWithoutRoles());
-    }
-
 }

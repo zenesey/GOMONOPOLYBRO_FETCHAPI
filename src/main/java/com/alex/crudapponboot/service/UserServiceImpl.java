@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.userRepository = userRepository;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -33,15 +34,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user;
     }
 
-
     @Transactional
     @Override
     public void removeUserById(long id) {
         userRepository.deleteById(id);
     }
-
-
-
 
     @Transactional
     @Override
@@ -49,14 +46,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user.getPassword() != getUserWithRolesById(id).getPassword()) {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         }
-
         userRepository.save(user);
     }
-
-
-
-
-
 
     @Transactional
     @Override
@@ -65,31 +56,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.save(user);
     }
 
-
-
-
-
-
-
     @Override
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-
-    @Override
-    public List<UserDto> getAllUsersWithoutRoles() {
-        return userRepository.getAllUsersWithoutRoles();
-    }
-
     @Override
     public List<User> getAllUsersWithRoles() {
         return userRepository.findAll();
-    }
-
-    @Override
-    public UserDto getUserWithoutRolesById(Long id) {
-        return userRepository.getUserWithoutRolesById(id);
     }
 
     @Override
