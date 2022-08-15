@@ -2,18 +2,17 @@ package com.alex.crudapponboot.repositories;
 
 import com.alex.crudapponboot.dto.UserDto;
 import com.alex.crudapponboot.models.User;
-import org.hibernate.annotations.Parameter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 //ПОМОГИТЕ МОЙ МЕНТОР ТИРАН
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
 
 
    User findByUsername(String username);

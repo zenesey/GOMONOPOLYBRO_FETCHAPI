@@ -1,13 +1,11 @@
 package com.alex.crudapponboot.controllers;
 
 
-import com.alex.crudapponboot.dto.UserDto;
 import com.alex.crudapponboot.models.User;
 import com.alex.crudapponboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,41 +23,39 @@ public class RestControllerAdmin {
     }
 
     @GetMapping()
-    public List<User> allUsers() {
-        return userService.getAllUsersWithRoles();
+    public ResponseEntity<List<User>> allUsers() {
+        return ResponseEntity.ok(userService.getAllUsersWithRoles());
 
     }
 
     @GetMapping("/auth")
-    public User principal(@AuthenticationPrincipal User user) {
-        return user;
+    public ResponseEntity<User> principal(@AuthenticationPrincipal User user) {
+        return ResponseEntity.ok(user);
     }
 
 
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable long id) {
         userService.removeUserById(id);
-        return "ok";
+        return ResponseEntity.ok("Delete successful");
     }
 
     @PutMapping
-    public String update(@RequestBody User user) {
-
+    public ResponseEntity<?> update(@RequestBody User user) {
         userService.updateUserById(user.getId(), user);
-        return "fuck";
+        return ResponseEntity.ok("Update successful");
     }
-
 
     @PostMapping
     public ResponseEntity<String> saveUser(@RequestBody User user) {
         userService.saveUser(user);
-        return ResponseEntity.ok("valid");
+        return ResponseEntity.ok("Save successful");
     }
 
     @GetMapping("/test")
-    public List<UserDto> test() {
-        return userService.getAllUsersWithoutRoles();
+    public ResponseEntity<?> test() {
+        return ResponseEntity.ok( userService.getAllUsersWithoutRoles());
     }
 
 }
