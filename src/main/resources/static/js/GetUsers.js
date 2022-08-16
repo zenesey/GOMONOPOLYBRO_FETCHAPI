@@ -148,7 +148,7 @@ formDelete.addEventListener('submit', e => {
 const DeleteModal = document.getElementById('ModalDelete')
 DeleteModal.addEventListener('show.bs.modal', event => {
 
-    const dButton = event.relatedTarget
+    const dButton = event.relatedTarget;
 
     const dUserId = dButton.getAttribute('data-bs-userId')
     const dUserName = dButton.getAttribute('data-bs-userName')
@@ -156,18 +156,22 @@ DeleteModal.addEventListener('show.bs.modal', event => {
     const dUserAge = dButton.getAttribute('data-bs-userAge')
     const dUserEmail = dButton.getAttribute('data-bs-userEmail')
 
-    const dModalUserId = DeleteModal.querySelector('#userIdDelete')
-    const dModalUserName = DeleteModal.querySelector('#userNameDelete')
+    console.log(dUserId,dUserName,dUserSurname,dUserAge,dUserEmail)
+
+    const dModalUserId = document.getElementById('userIdDelete')
+    const dModalUserName = document.getElementById('userNameDelete')
     const dModalUserSurname = DeleteModal.querySelector('#userSurnameDelete')
     const dModalUserAge = DeleteModal.querySelector('#userAgeDelete')
     const dModalUserEmail = DeleteModal.querySelector('#userEmailDelete')
 
-    dModalUserId.value = dUserId
+    dModalUserId.value = dUserId;
     dModalUserName.value = dUserName
     dModalUserSurname.value = dUserSurname
     dModalUserAge.value = dUserAge
     dModalUserEmail.value = dUserEmail
     userNameForDelete = dUserEmail
+
+    console.log(dUserId,dUserName,dUserSurname,dUserAge,dUserEmail)
 
 })
 // TODO Update
@@ -231,7 +235,7 @@ updateModal.addEventListener('show.bs.modal', event => {
     const uUserEmail = uButton.getAttribute('data-bs-userEmail')
 
     const uModalUserId = updateModal.querySelector('#userIdUpdate')
-    const uModalUserName = updateModal.querySelector('#userNameUpdate')
+    const uModalUserName = updateModal.querySelector('#nameUpdate')
     const uModalUserSurname = updateModal.querySelector('#userSurnameUpdate')
     const uModalUserAge = updateModal.querySelector('#userAgeUpdate')
     const uModalUserEmail = updateModal.querySelector('#userEmailUpdate')
@@ -324,6 +328,5 @@ function checkUniqEmail(formData, allUsername) {
     return bool;
 
 }
-
 
 
