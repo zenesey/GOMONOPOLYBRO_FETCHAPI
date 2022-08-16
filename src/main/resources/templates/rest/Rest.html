@@ -34,7 +34,7 @@
         <ul class="navbar-nav ms-auto mb-0 ms-lg-0 py-0 ">
             <li class="nav-item px-3">
                 <a class="nav-link" href="/logout">Logout
-                <img src="https://c.tenor.com/7aoWtEmB45EAAAAi/ricardo-milos.gif" height="40">
+                    <img src="https://c.tenor.com/7aoWtEmB45EAAAAi/ricardo-milos.gif" height="40">
                 </a>
             </li>
         </ul>
@@ -88,14 +88,12 @@
                     <tbody id="usersTable">
 
 
-
-
                     </tbody>
                 </table>
             </div>
         </div>
-<!--TODO USERS ENDS-->
-<!--TODO ADMIN PANEL        -->
+        <!--TODO USERS ENDS-->
+        <!--TODO ADMIN PANEL        -->
         <div class="col bg-light" id="Page4" style="display: none">
             <b class="fs-1">Admin panel</b>
             <br>
@@ -109,8 +107,8 @@
                 </li>
 
             </ul>
-<!--TODO ADMIN PANEL END-->
-<!--TODO ADD NEW USER-->
+            <!--TODO ADMIN PANEL END-->
+            <!--TODO ADD NEW USER-->
             <div class="container-fluid border pt-0 pb-0 px-0">
                 <p class="text-start fs-4 px-3 pb-0 mb-1">Add new user</p>
             </div>
@@ -120,8 +118,8 @@
                     <div class="form-group col-6 container-sm bg-white justify-content-center">
                         <div class="modal-body">
                             <div class="form-group row mb-3">
-                                <label for="userNameNew" class="form-label text-center"><b>First name</b></label>
-                                <input type="text" class="form-control" name="name" id="userNameNew" required >
+                                <label for="emailNew" class="form-label text-center"><b>First name</b></label>
+                                <input type="text" class="form-control" name="name" id="emailNew" required>
                             </div>
                             <div class="form-group row mb-3">
                                 <label for="userSurnameNew" class="form-label text-center"><b>Last name</b></label>
@@ -133,16 +131,19 @@
                             </div>
                             <div class="form-group row mb-3">
                                 <label for="userEmailNew" class="form-label text-center"><b>Email</b></label>
-                                <input type="email" class="form-control" name="username" id="userEmailNew" required min="5">
+                                <input type="email" class="form-control" name="email" id="userEmailNew" required
+                                       min="5">
                             </div>
 
                             <div class="form-group row mb-3">
                                 <label for="userPasswordNew" class="form-label text-center"><b>Password</b></label>
-                                <input type="password" class="form-control" name="password" id="userPasswordNew" minlength="5" required>
+                                <input type="password" class="form-control" name="password" id="userPasswordNew"
+                                       minlength="5" required>
                             </div>
                             <div class="form-group row mb-3">
                                 <label class="form-label text-center" for="rolesNew"><b>Role</b></label>
-                                <select class="form-select" size="2" name="roles" multiple aria-label="role" id="rolesNew">
+                                <select class="form-select" size="2" name="roles" multiple aria-label="role"
+                                        id="rolesNew">
                                     <option value="1 ROLE_ADMIN">ADMIN</option>
                                     <option value="2 ROLE_USER">USER</option>
                                 </select>
@@ -180,7 +181,7 @@
         </div>
         <div class="col bg-light">
             <b class="fs-1">Admin panel</b>
-<!--TODO INFO PANEL-->
+            <!--TODO INFO PANEL-->
             <div class="container-fluid border pt-0 pb-0 px-0">
                 <p class="text-start fs-4 px-3 pb-0 mb-1">User information page</p>
             </div>
@@ -210,7 +211,7 @@
 <!--TODO INFO PANEL END-->
 
 <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="modalDelete" aria-hidden="true">
-<!--TODO HEADER DELETE-->
+    <!--TODO HEADER DELETE-->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -218,8 +219,8 @@
                 <button type="button" class="btn-close"
                         data-bs-dismiss="modal"></button>
             </div>
-<!--TODO HEADER DELETE END-->
-<!--TODO BODY DELETE-->
+            <!--TODO HEADER DELETE END-->
+            <!--TODO BODY DELETE-->
             <form class="modal-form" id="formDelete">
                 <div class="form-group col-6 container-sm bg-white justify-content-center">
                     <div class="modal-body">
@@ -228,8 +229,8 @@
                             <input type="number" class="form-control" name="id" id="userIdDelete" readonly>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="userNameDelete" class="form-label text-center"><b>First name</b></label>
-                            <input type="text" class="form-control" name="username" id="userNameDelete" disabled>
+                            <label for="emailDelete" class="form-label text-center"><b>First name</b></label>
+                            <input type="text" class="form-control" name="email" id="emailDelete" disabled>
                         </div>
                         <div class="form-group row mb-3">
                             <label for="userSurnameDelete" class="form-label text-center"><b>Last
@@ -242,7 +243,7 @@
                         </div>
                         <div class="form-group row mb-3">
                             <label for="userEmailDelete" class="form-label text-center"><b>Email</b></label>
-                            <input type="text" class="form-control" name="username" id="userEmailDelete" disabled>
+                            <input type="text" class="form-control" name="email" id="userEmailDelete" disabled>
                         </div>
                         <div class="form-group row mb-3">
                             <label class="form-label text-center"><b>Role</b></label>
@@ -252,14 +253,14 @@
                             </select>
                         </div>
                     </div>
-<!--TODO BODY DELETE END-->
-<!--TODO FOOTER DELETE-->
+                    <!--TODO BODY DELETE END-->
+                    <!--TODO FOOTER DELETE-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" id="deleteButton" class="btn btn-danger">Delete</button>
                 </div>
-<!--TODO FOOTER DELETE END-->
+                <!--TODO FOOTER DELETE END-->
             </form>
         </div>
     </div>
@@ -267,7 +268,7 @@
 <!--TODO DELETE MODEL END-->
 
 <div class="modal fade" id="ModalEdit" tabindex="-1" aria-labelledby="modalEdit" aria-hidden="true">
-<!--todo ХИДЕР МОДЕЛИ UPDATE-->
+    <!--todo ХИДЕР МОДЕЛИ UPDATE-->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -275,8 +276,8 @@
                 <button type="button" class="btn-close"
                         data-bs-dismiss="modal"></button>
             </div>
-<!--todo HEADER UPDATE END-->
-<!--todo BODY UPDATE-->
+            <!--todo HEADER UPDATE END-->
+            <!--todo BODY UPDATE-->
             <form class="modal-form" id="formUpdate">
                 <div class="form-group col-6 container-sm bg-white justify-content-center">
                     <div class="modal-body">
@@ -285,12 +286,12 @@
                             <input type="number" class="form-control" name="id" id="userIdUpdate" readonly>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="userNameUpdate" class="form-label text-center"><b>First name</b></label>
-                            <input type="text" class="form-control" name="name" id="userNameUpdate" required >
+                            <label for="emailUpdate" class="form-label text-center"><b>First name</b></label>
+                            <input type="text" class="form-control" name="name" id="emailUpdate" required>
                         </div>
                         <div class="form-group row mb-3">
                             <label for="userSurnameUpdate" class="form-label text-center"><b>Last name</b></label>
-                            <input type="text" class="form-control" name="surName" id="userSurnameUpdate" required  >
+                            <input type="text" class="form-control" name="surName" id="userSurnameUpdate" required>
                         </div>
                         <div class="form-group row mb-3">
                             <label for="userAgeUpdate" class="form-label text-center"><b>Age</b></label>
@@ -298,7 +299,7 @@
                         </div>
                         <div class="form-group row mb-3">
                             <label for="userEmailUpdate" class="form-label text-center"><b>Email</b></label>
-                            <input type="email" class="form-control" name="username" id="userEmailUpdate" required >
+                            <input type="email" class="form-control" name="email" id="userEmailUpdate" required>
                         </div>
 
                         <div class="form-group row mb-3">
@@ -313,14 +314,14 @@
                             </select>
                         </div>
                     </div>
-<!--todo BODY UPDATE END-->
-<!--TODO UPDATE FOOTER-->
+                    <!--todo BODY UPDATE END-->
+                    <!--TODO UPDATE FOOTER-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" id="updateButton" class="btn btn-primary">Edit</button>
                 </div>
-<!--TODO UPDATE FOOTER-->
+                <!--TODO UPDATE FOOTER-->
 
             </form>
         </div>
@@ -328,11 +329,30 @@
 </div>
 <!--TODO UPDATE MODEL END-->
 
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+        <div class="container-fluid">
+            <ul>
+                <li>
+                    <div id="18+">
+                        <form action="https://rt.pornhub.com/">
+                            <button class="btn btn-outline-warning position-absolute top-10 start-50 translate-middle-x"
+                                    type="submit"><img src="https://di.phncdn.com/www-static/images/pornhub_logo_straight.svg?cache=2022081102"
+                                                       alt="">
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<script type="text/javascript" th:src="@{GetUsers.js}"></script>
+
+<script type="text/javascript" src="/js/GetUsers.js"></script>
+<script type="text/javascript" src="/js/loginPage.js"></script>
 
 <script>getUsers();</script>
 <script>auth();</script>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

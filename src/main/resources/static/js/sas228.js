@@ -1,0 +1,3 @@
+function sos() {
+    alert("chmo")
+}

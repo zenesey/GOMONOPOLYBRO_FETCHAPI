@@ -15,31 +15,31 @@ async function getUsers() {
         const placement = document.getElementById("usersTable");
         placement.innerHTML = "";
 
-        data.forEach(({id, name, surName, age, username, roles}) => {
+        data.forEach(({id, name, surName, age, username: email, roles}) => {
             let userRoles = "";
             roles.forEach((role) => {
                 userRoles = userRoles + role.name.substring(5) + " ";
             })
             const element = document.createElement("tr");
-            allUsername.push(username);
+            allUsername.push(email);
             element.innerHTML = `
             <th scope="row">${id}</th>
             <td>${name}</td>
             <td>${surName}</td>
             <td>${age}</td>
-            <td>${username}</td>
+            <td>${email}</td>
             <td>${userRoles}</td>
             <td>
                 <button type="button" class="btn btn-info text-white" data-bs-userId=${id}
                     data-bs-userName=${name} data-bs-userSurname=${surName} data-bs-userAge=${age}
-                    data-bs-userEmail=${username} data-bs-toggle="modal"
+                    data-bs-userEmail=${email} data-bs-toggle="modal"
                     data-bs-target="#ModalEdit">Edit</button>
             </td>
 
             <td>
                 <button type="button" class="btn btn-danger" data-bs-userId=${id}
                     data-bs-userName=${name} data-bs-userSurname=${surName} data-bs-userAge=${age}
-                    data-bs-userEmail=${username} data-bs-toggle="modal"
+                    data-bs-userEmail=${email} data-bs-toggle="modal"
                     data-bs-target="#ModalDelete">Delete</button>
             </td>`
             placement.append(element)
@@ -72,9 +72,28 @@ async function auth() {
                 console.log(authObj);
                 infoBar(authObj);
                 navBar(authObj.userRoles, authObj.username)
+                badContent(user.age)
+
             }
         )
     })
+}
+
+
+function badContent(age) {
+    const placement = document.getElementById("18+");
+
+    if (age < 18) {
+    placement.innerHTML =
+        `<form id="18+" action="https://youtu.be/vrLu-gdkG6I">
+            <button class="btn btn-outline-warning position-absolute top-10 start-50 translate-middle-x"
+                type="submit">
+                    <img src="https://di.phncdn.com/www-static/images/pornhub_logo_straight.svg?cache=2022081102"
+                    alt="">
+            </button>
+       </form>`
+    }
+    console.log("sas")
 }
 
 function infoBar(obj) {
@@ -125,7 +144,7 @@ formDelete.addEventListener('submit', e => {
 
 //TODO МОДАЛКА DELETE END
 
-//TODO МОДАЛКА EDIT
+//TODO МОДАЛКА DELETE
 const DeleteModal = document.getElementById('ModalDelete')
 DeleteModal.addEventListener('show.bs.modal', event => {
 
@@ -305,3 +324,6 @@ function checkUniqEmail(formData, allUsername) {
     return bool;
 
 }
+
+
+

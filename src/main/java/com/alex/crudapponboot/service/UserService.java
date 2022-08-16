@@ -14,7 +14,7 @@ public interface UserService {
     User getUserWithRolesById(Long id);
     void removeUserById(long id);
     void saveUser(User user);
-    User getUserByUsername(String username);
+    User getUserByEmail(String email);
     void updateUserById(long id, User user);
 
 }

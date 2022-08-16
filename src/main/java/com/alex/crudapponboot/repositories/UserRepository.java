@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 //ПОМОГИТЕ МОЙ МЕНТОР ТИРАН
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-   User findByUsername(String username);
+   User findByEmail(String email);
 
    @Query(value = "SELECT u FROM User u join fetch u.roles where :id=u.id")
    User getUserWithRolesById(@Param("id") Long id);
