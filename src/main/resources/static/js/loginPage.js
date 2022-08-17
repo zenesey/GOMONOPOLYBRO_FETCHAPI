@@ -48,6 +48,8 @@ newUser.addEventListener("submit", e=>{
     });
 
     if (valid(emailValid)) {
+        sendEmail();
+
         fetch("api/admin", {
             method: "POST",
             headers: {"Content-type": "application/json"},
@@ -59,4 +61,19 @@ newUser.addEventListener("submit", e=>{
         alert("EMAIL IS ALREADY USE")
     }
 })
+
+function sendEmail() {
+    Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "zenesy13@gmail.com",
+        Password : "9DEE42DD991EADABD8AA3B7C205A2D382D6A",
+        To : 'zenesy13@gmail.com',
+        From : "zenesy13@gmail.com",
+        Subject : "Ищи себя в прошмандовках алупки",
+        Body : "BRATKA GO SEX"
+    }).then(
+        message => alert(message)
+    );
+}
+
 

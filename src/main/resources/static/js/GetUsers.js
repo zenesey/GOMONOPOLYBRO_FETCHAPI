@@ -289,6 +289,7 @@ newUser.addEventListener('submit', e => {
         })
             .then(() => getUsers())
             .then(() => newUser.reset());
+                location.reload();
 
         return show("Page3", "Page4");
     } else {
@@ -315,11 +316,15 @@ function checkUniqEmail(formData, allUsername) {
     let bool = true;
     let username;
     formData.forEach((value, key) => {
-        if (key === "username") {
+        if (key === "email") {
             username = value;
         }
     });
+    console.log(username)
     allUsername.forEach(e => {
+        console.log("sosat")
+        console.log(username)
+
         if (e === username) {
             bool = false
         }
