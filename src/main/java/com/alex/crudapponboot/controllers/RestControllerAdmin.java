@@ -34,7 +34,7 @@ public class RestControllerAdmin {
 
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}asdasd")
     public ResponseEntity<?> deleteUser(@PathVariable long id) {
         userService.removeUserById(id);
         return ResponseEntity.ok("Delete successful");
